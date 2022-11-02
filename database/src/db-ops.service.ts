@@ -138,6 +138,11 @@ export class DbOpsService {
       } else {
         this.loggerService.debug?.(`Executing migration for ${dbName}`);
         await migrationExecutor.executePendingMigrations();
+        this.loggerService.debug?.(
+          `Executed migration ${JSON.stringify(
+            await migrationExecutor.getExecutedMigrations(),
+          )} for ${dbName}`,
+        );
       }
     }
 
